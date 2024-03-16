@@ -135,13 +135,18 @@ const Search = () => {
 const Filter = ({setCurrentDate, isLive, toggleLive}: any) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [selected, setSelected] = React.useState(INITIAL_DATE);
+  const [usingCalendar, setUsingCalendar] = React.useState(false);
+  const [currentIndex, setCurrentIndex] = React.useState(3);
+
   const onDayPress = (day: any) => {
     setCurrentDate(day.dateString);
     setSelected(day.dateString);
     setModalVisible(false);
+    setUsingCalendar(true);
   };
+
   return (
-    <View className="flex flex-row justify-between items-center w-full">
+    <View className="flex flex-row justify-between items-center w-full mt-4">
       <Modal
         animationType="fade"
         transparent={true}
@@ -181,56 +186,106 @@ const Filter = ({setCurrentDate, isLive, toggleLive}: any) => {
       </TouchableOpacity>
       <View className="flex flex-row gap-x-1">
         <TouchableOpacity
-          className="w-12 h-[54px] flex items-center justify-center text-[#120802]"
-          onPress={() =>
-            setCurrentDate(moment().subtract(2, 'days').format('YYYY-MM-DD'))
-          }>
-          <Text className="text-[10px] text-black">T2</Text>
+          className={`w-12 h-[54px] flex items-center justify-center ${
+            !usingCalendar && currentIndex === 1
+              ? 'bg-white border-[1px] border-[#FFA755]'
+              : ''
+          } rounded-[10px]`}
+          onPress={() => {
+            setCurrentDate(moment().subtract(2, 'days').format('YYYY-MM-DD'));
+            setUsingCalendar(false);
+            setCurrentIndex(1);
+          }}>
+          <Text className="text-[10px] text-black">
+            {moment().subtract(2, 'days').format('E') !== '7'
+              ? `T${+moment().subtract(2, 'days').format('E') + 1}`
+              : 'CNhật'}
+          </Text>
           <Text className="text-[10px] text-black">
             {moment().subtract(2, 'days').format('DD/MM')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className="w-12 h-[54px] flex items-center justify-center text-[#120802]"
-          onPress={() =>
-            setCurrentDate(moment().subtract(1, 'days').format('YYYY-MM-DD'))
-          }>
-          <Text className="text-[10px] text-black">T3</Text>
+          className={`w-12 h-[54px] flex items-center justify-center ${
+            !usingCalendar && currentIndex === 2
+              ? 'bg-white border-[1px] border-[#FFA755]'
+              : ''
+          } rounded-[10px]`}
+          onPress={() => {
+            setCurrentDate(moment().subtract(1, 'days').format('YYYY-MM-DD'));
+            setUsingCalendar(false);
+            setCurrentIndex(2);
+          }}>
+          <Text className="text-[10px] text-black">
+            {moment().subtract(1, 'days').format('E') !== '7'
+              ? `T${+moment().subtract(1, 'days').format('E') + 1}`
+              : 'CNhật'}
+          </Text>
           <Text className="text-[10px] text-black">
             {moment().subtract(1, 'days').format('DD/MM')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className="w-12 h-[54px] flex items-center justify-center bg-white rounded-[10px]"
-          onPress={() => setCurrentDate(moment().format('YYYY-MM-DD'))}>
+          className={`w-12 h-[54px] flex items-center justify-center ${
+            !usingCalendar && currentIndex === 3
+              ? 'bg-white border-[1px] border-[#FFA755]'
+              : ''
+          } rounded-[10px]`}
+          onPress={() => {
+            setCurrentDate(moment().format('YYYY-MM-DD'));
+            setUsingCalendar(false);
+            setCurrentIndex(3);
+          }}>
           <Text className="text-[10px] text-[#F97700]">H.Nay</Text>
           <Text className="text-[10px] text-[#F97700]">
             {moment().format('DD/MM')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className="w-12 h-[54px] flex items-center justify-center text-[#120802]"
-          onPress={() =>
-            setCurrentDate(moment().add(1, 'days').format('YYYY-MM-DD'))
-          }>
-          <Text className="text-[10px] text-black">T4</Text>
+          className={`w-12 h-[54px] flex items-center justify-center ${
+            !usingCalendar && currentIndex === 4
+              ? 'bg-white border-[1px] border-[#FFA755]'
+              : ''
+          } rounded-[10px]`}
+          onPress={() => {
+            setCurrentDate(moment().add(1, 'days').format('YYYY-MM-DD'));
+            setUsingCalendar(false);
+            setCurrentIndex(4);
+          }}>
+          <Text className="text-[10px] text-black">
+            {moment().add(1, 'days').format('E') !== '7'
+              ? `T${+moment().add(1, 'days').format('E') + 1}`
+              : 'CNhật'}
+          </Text>
           <Text className="text-[10px] text-black">
             {moment().add(1, 'days').format('DD/MM')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className="w-12 h-[54px] flex items-center justify-center text-[#120802]"
-          onPress={() =>
-            setCurrentDate(moment().add(2, 'days').format('YYYY-MM-DD'))
-          }>
-          <Text className="text-[10px] text-black">T5</Text>
+          className={`w-12 h-[54px] flex items-center justify-center ${
+            !usingCalendar && currentIndex === 5
+              ? 'bg-white border-[1px] border-[#FFA755]'
+              : ''
+          } rounded-[10px]`}
+          onPress={() => {
+            setCurrentDate(moment().add(2, 'days').format('YYYY-MM-DD'));
+            setUsingCalendar(false);
+            setCurrentIndex(5);
+          }}>
+          <Text className="text-[10px] text-black">
+            {moment().add(2, 'days').format('E') !== '7'
+              ? `T${+moment().add(2, 'days').format('E') + 1}`
+              : 'CNhật'}
+          </Text>
           <Text className="text-[10px] text-black">
             {moment().add(2, 'days').format('DD/MM')}
           </Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        className="w-12 h-12 items-center justify-center"
+        className={`w-12 h-12 items-center justify-center rounded-[10px] ${
+          usingCalendar ? 'bg-white border-[1px] border-[#FFA755]' : ''
+        }`}
         onPress={() => {
           setModalVisible(true);
         }}>
@@ -255,19 +310,19 @@ const League = ({league}: any) => {
         />
         <View className="flex flex-col ml-2">
           <View className="flex flex-row gap-x-1 justify-center items-center">
-            <Text className="text-sm font-semibold text-black">
+            <Text className="text-sm font-semibold text-black mr-2">
               {league.name}
             </Text>
-            <StarSVG />
+            {/* <StarSVG /> */}
           </View>
           {/* <Text className="text-[11px] font-normal text-[#120802]">
             Description
           </Text> */}
         </View>
       </View>
-      <TouchableOpacity className="flex flex-row items-center justify-center w-8 h-8">
+      {/* <TouchableOpacity className="flex flex-row items-center justify-center w-8 h-8">
         <ArrowLeft className="" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -309,9 +364,9 @@ const Match = ({fixture}: any) => {
         </View>
       </View>
       <View className="flex flex-row-reverse">
-        <TouchableOpacity className="w-12 h-12 justify-center items-center">
+        {/* <TouchableOpacity className="w-12 h-12 justify-center items-center">
           <EmptyStarSVG />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         {/* <View className="flex gap-y-1 items-end justify-center">
           <Text className="text-[#120802]/40 text-xs font-semibold">100</Text>
           <Text className="text-[#120802]/40 text-xs font-semibold">98</Text>
