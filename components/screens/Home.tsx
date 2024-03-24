@@ -29,6 +29,7 @@ import {
 import {handleGetFixtures} from '../../services/matches';
 import {useNavigation} from '@react-navigation/native';
 import Details from '../layout/details';
+import SearchPage from './Search';
 
 const DATA = [
   {
@@ -122,13 +123,18 @@ const Header = () => {
 };
 
 const Search = () => {
+  const navigation = useNavigation();
   return (
-    <View className="w-12 h-12 flex items-center justify-center">
+    <TouchableOpacity
+      className="w-12 h-12 flex items-center justify-center"
+      onPress={() => {
+        navigation.navigate('SearchPage');
+      }}>
       <Image
         className="w-6 h-6"
         source={require('../../assets/vectors/search.png')}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -514,6 +520,11 @@ function HomeScreen() {
         component={Home}
       />
       <Stack.Screen
+        options={{headerShown: false}}
+        name="SearchPage"
+        component={SearchPage}
+      />
+      <Stack.Screen
         name="Details"
         component={Details}
         options={{
@@ -526,6 +537,9 @@ function HomeScreen() {
           headerBackTitleVisible: false,
           headerStyle: {
             backgroundColor: '#F5F5F7',
+          },
+          headerTitleStyle: {
+            color: '#000',
           },
           headerShadowVisible: false,
         }}
