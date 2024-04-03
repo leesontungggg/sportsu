@@ -240,4 +240,18 @@ export const HOT_LEAGUES = [
     category: 1,
     has_jerseys: false,
   },
+  {
+    active: true,
+    category: 3,
+    country_id: 462,
+    has_jerseys: false,
+    id: 45,
+    image_path: 'https://cdn.sportmonks.com/images/soccer/leagues/13/45.png',
+    last_played_at: '2024-03-23 12:30:00',
+    name: "Women's Super League",
+    short_code: null,
+    sport_id: 1,
+    sub_type: 'domestic',
+    type: 'league',
+  },
 ];

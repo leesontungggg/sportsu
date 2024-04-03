@@ -134,15 +134,7 @@ const SearchPage = ({navigation}) => {
                       </View>
                     </View>
                   </View>
-                  <View className="flex flex-row-reverse">
-                    {/* <TouchableOpacity className="w-12 h-12 justify-center items-center">
-          <EmptyStarSVG />
-        </TouchableOpacity> */}
-                    {/* <View className="flex gap-y-1 items-end justify-center">
-          <Text className="text-[#120802]/40 text-xs font-semibold">100</Text>
-          <Text className="text-[#120802]/40 text-xs font-semibold">98</Text>
-        </View> */}
-                  </View>
+                  <View className="flex flex-row-reverse"></View>
                 </TouchableOpacity>
               ))
             )}
@@ -154,7 +146,12 @@ const SearchPage = ({navigation}) => {
       return (
         <View className="py-3 px-2 gap-y-2">
           {searchResult?.map((league: any) => (
-            <View className="py-[15px] px-2 bg-white rounded-lg flex flex-row items-center">
+            <TouchableOpacity
+              className="py-[15px] px-2 bg-white rounded-lg flex flex-row items-center"
+              onPress={() => {
+                console.log('this is running');
+                navigation.navigate('LeagueDetails', {leagueId: league?.id});
+              }}>
               <Image
                 source={{
                   uri: league.image_path,
@@ -164,7 +161,7 @@ const SearchPage = ({navigation}) => {
               <View className="flex ml-2">
                 <Text className="text-[14px] font-semibold">{league.name}</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       );
@@ -306,7 +303,13 @@ const SearchPage = ({navigation}) => {
               </View>
               <View className="py-3 px-2 gap-y-2">
                 {_.sampleSize(HOT_LEAGUES, 5).map((league: any) => (
-                  <View className="py-[15px] px-2 bg-white rounded-lg flex flex-row items-center">
+                  <TouchableOpacity
+                    className="py-[15px] px-2 bg-white rounded-lg flex flex-row items-center"
+                    onPress={() => {
+                      navigation.navigate('LeagueDetails', {
+                        leagueId: league?.id,
+                      });
+                    }}>
                     <Image
                       source={{
                         uri: league.image_path,
@@ -318,7 +321,7 @@ const SearchPage = ({navigation}) => {
                         {league.name}
                       </Text>
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 ))}
               </View>
               <View className="w-full h-8 mt-2 py-1 px-3 flex flex-row items-center font-semibold text-[14px]">
@@ -327,7 +330,13 @@ const SearchPage = ({navigation}) => {
               </View>
               <View className="py-3 px-2 gap-y-2">
                 {_.shuffle(HOT_TEAMS).map((team: any) => (
-                  <View className="py-[15px] px-2 bg-white rounded-lg flex flex-row items-center">
+                  <TouchableOpacity
+                    className="py-[15px] px-2 bg-white rounded-lg flex flex-row items-center"
+                    onPress={() => {
+                      navigation.navigate('TeamDetails', {
+                        teamId: team?.id,
+                      });
+                    }}>
                     <Image
                       source={{
                         uri: team.image_path,
@@ -339,7 +348,7 @@ const SearchPage = ({navigation}) => {
                         {team.name}
                       </Text>
                     </View>
-                  </View>
+                  </TouchableOpacity>
                 ))}
               </View>
             </>

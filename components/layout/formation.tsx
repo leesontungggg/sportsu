@@ -76,8 +76,6 @@ export default function Formation({route}: any) {
     (item: any) => item.position_id === 27 && item.type_id === 11,
   );
 
-  // console.log('defenderA', defenderA);
-
   const coachA = formationData?.coaches.find(
     (coach: any) => coach.meta.participant_id === participantA?.id,
   );

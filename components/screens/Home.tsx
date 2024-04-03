@@ -30,6 +30,8 @@ import {handleGetFixtures} from '../../services/matches';
 import {useNavigation} from '@react-navigation/native';
 import Details from '../layout/details';
 import SearchPage from './Search';
+import LeagueDetails from '../layout/league-details';
+import TeamDetails from '../layout/team-details';
 
 const DATA = [
   {
@@ -461,6 +463,8 @@ const CalendarSection = () => {
   const leaguesId = !!fixtures && Object.keys(fixtures);
   const [isLive, setIsLive] = React.useState(false);
 
+  console.log();
+
   React.useEffect(() => {
     handleGetFixtures(isLive, currentDate).then(result => {
       if (result.data.data) {
@@ -527,6 +531,46 @@ function HomeScreen() {
       <Stack.Screen
         name="Details"
         component={Details}
+        options={{
+          title: '',
+          headerBackImage: () => (
+            <View className="p-4">
+              <BackSVG />
+            </View>
+          ),
+          headerBackTitleVisible: false,
+          headerStyle: {
+            backgroundColor: '#F5F5F7',
+          },
+          headerTitleStyle: {
+            color: '#000',
+          },
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="LeagueDetails"
+        component={LeagueDetails}
+        options={{
+          title: '',
+          headerBackImage: () => (
+            <View className="p-4">
+              <BackSVG />
+            </View>
+          ),
+          headerBackTitleVisible: false,
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTitleStyle: {
+            color: '#000',
+          },
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="TeamDetails"
+        component={TeamDetails}
         options={{
           title: '',
           headerBackImage: () => (

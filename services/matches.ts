@@ -36,9 +36,55 @@ export const handleGetDetailFixture = (fixtureId: String) => {
   );
 };
 
+export const handleGetStandingBySeasonId = (seasonId: String) => {
+  return customAxios.get(`/standings/seasons/${seasonId}?include=participant`);
+};
+
+export const handleGetDetailLeague = (leagueId: String) => {
+  return customAxios.get(`/leagues/${leagueId}?include=seasons&per_page=50`);
+};
+
+export const handleGetDetailSeason = (seasonId: String) => {
+  return customAxios.get(`/seasons/${seasonId}?include=statistics`);
+};
+
+export const handleGetDetailTeam = (teamId: String) => {
+  return customAxios.get(`/teams/${teamId}`);
+};
+
 export const handleGetDetailFormation = (fixtureId: String) => {
   return customAxios.get(
     `/fixtures/${fixtureId}?include=lineups.player;formations;coaches`,
+  );
+};
+
+export const handleGetFixturesTodayByLeagueId = (leagueId: String) => {
+  return customAxios.get(
+    `/fixtures?filter=fixtureLeagues:${leagueId};todaydate&include=participants`,
+  );
+};
+
+export const handleGetFixturesDateRangeByLeagueId = (
+  from: any,
+  to: any,
+  leagueId: String,
+) => {
+  return customAxios.get(
+    `/fixtures/between/${from}/${to}?filter=fixtureLeagues:${leagueId}&include=participants;scores`,
+  );
+};
+
+export const getCurrentSeasonByLeagueId = (leagueId: String) => {
+  return customAxios.get(`/leagues/${leagueId}?include=currentSeason`);
+};
+
+export const getStatisticsBySeasonId = (seasonId: String) => {
+  return customAxios.get(`/seasons/${seasonId}?include=statistics&per_page=50`);
+};
+
+export const handleGetFixturesyLeagueId = (leagueId: String) => {
+  return customAxios.get(
+    `/fixtures?filter=fixtureLeagues:${leagueId}&include=participants`,
   );
 };
 

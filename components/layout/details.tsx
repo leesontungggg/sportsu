@@ -61,9 +61,6 @@ const Details = ({route, navigation}: any) => {
             <View className="w-full px-2 h-[120px] flex flex-row rounded-lg bg-[#FFD9B7] items-center justify-between">
               <View className="flex flex-col items-center justify-center h-full flex-1">
                 <View className="flex flex-row items-center">
-                  {/* <TouchableOpacity className="bg-white/25 rounded-full w-6 h-6 items-center justify-center">
-                    <EmptyStarSVG16 />
-                  </TouchableOpacity> */}
                   <Image
                     source={{uri: fixtureData?.participants[0].image_path}}
                     className="w-16 h-16"
@@ -90,9 +87,6 @@ const Details = ({route, navigation}: any) => {
                     source={{uri: fixtureData?.participants[1].image_path}}
                     className="w-16 h-16"
                   />
-                  {/* <TouchableOpacity className="bg-white/25 rounded-full w-6 h-6 items-center justify-center">
-                    <EmptyStarSVG16 />
-                  </TouchableOpacity> */}
                 </View>
                 <Text className="mt-1 text-center text-black">
                   {fixtureData?.participants[1].name}
@@ -118,20 +112,6 @@ const Details = ({route, navigation}: any) => {
               fixtureId,
             }}
           />
-          {/* <Tab.Screen
-            name="Dự đoán AI"
-            component={Overall}
-            initialParams={{
-              fixtureId,
-            }}
-          />
-          <Tab.Screen
-            name="Chat"
-            component={Overall}
-            initialParams={{
-              fixtureId,
-            }}
-          /> */}
           <Tab.Screen
             name="Thống kê"
             component={Overall}
